@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>/media/src/Dropbox/ACMICPC/Source_poj/Volumn_026/poj_3507_Judging_Olympia.cpp.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body bgcolor="#ffffff" text="#000000"><font face="monospace">
+<font color="#8080ff">//Sun Nov 14 20:37:24 CST 2010</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;vector&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;list&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;map&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;set&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;deque&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;queue&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;stack&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;bitset&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;algorithm&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;functional&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;numeric&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;utility&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;sstream&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;iostream&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;iomanip&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdio&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cmath&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdlib&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cctype&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;string&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstring&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdio&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cmath&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdlib&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;ctime&gt;</font><br>
+<br>
+<font color="#ffff00">using</font>&nbsp;<font color="#00ff00">namespace</font>&nbsp;std;<br>
+<br>
+<font color="#00ff00">int</font>&nbsp;main( <font color="#00ff00">int</font>&nbsp;argc, <font color="#00ff00">const</font>&nbsp;<font color="#00ff00">char</font>* argv[] )<br>
+{<br>
+<font color="#8080ff">//&nbsp;&nbsp;freopen(&quot;input.in&quot;, &quot;r&quot;, stdin);</font><br>
+<font color="#8080ff">//&nbsp;&nbsp;freopen(&quot;output.out&quot;, &quot;w&quot;, stdout);</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;a[<font color="#ff6060">6</font>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">while</font>(cin &gt;&gt; a[<font color="#ff6060">0</font>] &gt;&gt; a[<font color="#ff6060">1</font>] &gt;&gt; a[<font color="#ff6060">2</font>] &gt;&gt; a[<font color="#ff6060">3</font>] &gt;&gt; a[<font color="#ff6060">4</font>] &gt;&gt; a[<font color="#ff6060">5</font>] &amp;&amp; (a[<font color="#ff6060">0</font>]||a[<font color="#ff6060">1</font>]||a[<font color="#ff6060">2</font>]||a[<font color="#ff6060">3</font>]||a[<font color="#ff6060">4</font>]||a[<font color="#ff6060">5</font>]))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;mmax = a[<font color="#ff6060">0</font>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;mmin = a[<font color="#ff6060">0</font>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;sum = a[<font color="#ff6060">0</font>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">for</font>(<font color="#00ff00">int</font>&nbsp;i=<font color="#ff6060">1</font>; i&lt;<font color="#ff6060">6</font>; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mmax = max(mmax, a[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mmin = min(mmin, a[i]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum += a[i];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; <font color="#ff6060">1.0</font>*(sum - mmax - mmin)/<font color="#ff6060">4.</font>&nbsp;&lt;&lt; endl;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<font color="#8080ff">//&nbsp;&nbsp;fclose(stdin);</font><br>
+<font color="#8080ff">//&nbsp;&nbsp;fclose(stdout);</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+}<br>
+</font></body>
+</html>

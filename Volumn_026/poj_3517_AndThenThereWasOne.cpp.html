@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>/media/src/Dropbox/ACMICPC/Source_poj/Volumn_026/poj_3517_AndThenThereWasOne.cpp.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body bgcolor="#ffffff" text="#000000"><font face="monospace">
+<font color="#8080ff">////////2008-04-08;</font><br>
+<font color="#ff40ff">#include</font><font color="#ff6060">&lt;stdio.h&gt;</font><br>
+<font color="#00ff00">int</font>&nbsp;main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;a[<font color="#ff6060">10001</font>];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;m,n,k;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">while</font>(scanf(<font color="#ff6060">&quot;</font><font color="#ff40ff">%d%d%d</font><font color="#ff6060">&quot;</font>,&amp;n,&amp;k,&amp;m)==<font color="#ff6060">3</font>&amp;&amp;(n+m+k)&gt;<font color="#ff6060">0</font>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;i;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[<font color="#ff6060">1</font>]=<font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">for</font>(i=<font color="#ff6060">2</font>;i&lt;n;i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i]=(a[i-<font color="#ff6060">1</font>]+k)%i;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#ff6060">&quot;</font><font color="#ff40ff">%d</font><font color="#ff40ff">\n</font><font color="#ff6060">&quot;</font>,(a[n-<font color="#ff6060">1</font>]+n+m+<font color="#ff6060">1</font>)%n);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+}<br>
+<font color="#8080ff">/*</font><br>
+<font color="#8080ff">1 2 3 4 5 6 7 8</font><br>
+<font color="#8080ff">4 5 6 7 8 9 10 11</font><br>
+<font color="#8080ff">4 5 6 7 8 9 10</font><br>
+<font color="#8080ff">1 2 3 4 5 6 7</font><br>
+<font color="#8080ff">更简单一些，就是先求出n-1的解，再进行一次类似旋转的操作（即：（f（n-1）+m+1+n）%n），即可得到解；</font><br>
+<br>
+<font color="#8080ff">&nbsp;</font><span style="background-color: #ff6060"><font color="#ffffff"><b>/</b></font></span><font color="#8080ff">*约瑟夫问题的数学方法</font><br>
+<font color="#8080ff">无论是用链表实现还是用数组实现都有一个共同点：要模拟整个游戏过程，不仅程序写起来比较烦，而且时间复杂度高达O(nm)，当n，m非常大(例如上百万，上千万)的时候，几乎是没有办法在短时间内出结果的。我们注意到原问题仅仅是要求出最后的胜利者的序号，而不是要读者模拟整个过程。因此如果要追求效率，就要打破常规，实施一点数学策略。</font><br>
+<br>
+<font color="#8080ff">为了讨论方便，先把问题稍微改变一下，并不影响原意：</font><br>
+<br>
+<font color="#8080ff">问题描述：n个人（编号0~(n-1))，从0开始报数，报到(m-1)的退出，剩下的人继续从0开始报数。求胜利者的编号。</font><br>
+<br>
+<font color="#8080ff">我们知道第一个人(编号一定是m%n-1) 出列之后，剩下的n-1个人组成了一个新的约瑟夫环（以编号为k=m%n的人开始）:</font><br>
+<font color="#8080ff">k k+1 k+2 ... n-2, n-1, 0, 1, 2, ... k-2</font><br>
+<font color="#8080ff">并且从k开始报0。</font><br>
+<br>
+<font color="#8080ff">现在我们把他们的编号做一下转换：</font><br>
+<font color="#8080ff">k --&gt; 0</font><br>
+<font color="#8080ff">k+1 --&gt; 1</font><br>
+<font color="#8080ff">k+2 --&gt; 2</font><br>
+<font color="#8080ff">...</font><br>
+<font color="#8080ff">...</font><br>
+<font color="#8080ff">k-2 --&gt; n-2</font><br>
+<font color="#8080ff">k-1 --&gt; n-1</font><br>
+<br>
+<font color="#8080ff">变换后就完完全全成为了(n-1)个人报数的子问题，假如我们知道这个子问题的解：例如x是最终的胜利者，那么根据上面这个表把这个x变回去不刚好就是n个人情况的解吗？！！变回去的公式很简单，相信大家都可以推出来：x'=(x+k)%n</font><br>
+<br>
+<font color="#8080ff">如何知道(n-1)个人报数的问题的解？对，只要知道(n-2)个人的解就行了。(n-2)个人的解呢？当然是先求(n-3)的情况 ---- 这显然就是一个倒推问题！好了，思路出来了，下面写递推公式：</font><br>
+<br>
+<font color="#8080ff">令f[i]表示i个人玩游戏报m退出最后胜利者的编号，最后的结果自然是f[n]</font><br>
+<br>
+<font color="#8080ff">递推公式</font><br>
+<font color="#8080ff">f[1]=0;</font><br>
+<font color="#8080ff">f[i]=(f[i-1]+m)%i; (i&gt;1)</font><br>
+<font color="#8080ff">有了这个公式，我们要做的就是从1-n顺序算出f[i]的数值，最后结果是f[n]。因为实际生活中编号总是从1开始，我们输出f[n]+1</font><br>
+<font color="#8080ff">由于是逐级递推，不需要保存每个f[i]，程序也是异常简单：</font><br>
+<font color="#8080ff">这个算法的时间复杂度为O(n)，相对于模拟算法已经有了很大的提高。算n，m等于一百万，一千万的情况不是问题了。可见，适当地运用数学策略，不仅可以让编程变得简单，而且往往会成倍地提高算法执行效率。</font><br>
+<br>
+<font color="#8080ff">*/</font><br>
+</font></body>
+</html>

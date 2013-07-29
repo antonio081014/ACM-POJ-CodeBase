@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>/media/src/Dropbox/ACMICPC/Source_poj/Volumn_029/poj_3852_String_LD.cpp.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body bgcolor="#ffffff" text="#000000"><font face="monospace">
+<font color="#8080ff">//Sun Feb 13 16:16:52 CST 2011</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;vector&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;list&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;map&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;set&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;deque&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;queue&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;stack&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;bitset&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;algorithm&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;functional&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;numeric&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;utility&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;sstream&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;iostream&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;iomanip&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdio&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cmath&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdlib&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cctype&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;string&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstring&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdio&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cmath&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;cstdlib&gt;</font><br>
+<font color="#ff40ff">#include </font><font color="#ff6060">&lt;ctime&gt;</font><br>
+<br>
+<font color="#ffff00">using</font>&nbsp;<font color="#00ff00">namespace</font>&nbsp;std;<br>
+<br>
+<font color="#8080ff">/*</font><font color="#8080ff">* Perform the function. </font><font color="#8080ff">*/</font><br>
+<font color="#00ff00">int</font>&nbsp;checkString(vector&lt;string&gt; v, <font color="#00ff00">int</font>&nbsp;number) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;sz = number;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;count = <font color="#ff6060">0</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">while</font>&nbsp;(<font color="#ff6060">true</font>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">for</font>&nbsp;(<font color="#00ff00">int</font>&nbsp;i = <font color="#ff6060">0</font>; i &lt; sz; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">if</font>(v[i].size() == <font color="#ff6060">1</font>) <font color="#ffff00">return</font>&nbsp;count;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v[i] = v[i].substr(<font color="#ff6060">1</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&lt;string&gt; v1(v.begin(), v.end());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">if</font>&nbsp;(v1.size() &lt; v.size())<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">return</font>&nbsp;count;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<br>
+<font color="#00ff00">int</font>&nbsp;main(<font color="#00ff00">int</font>&nbsp;argc, <font color="#00ff00">const</font>&nbsp;<font color="#00ff00">char</font>* argv[]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;freopen(<font color="#ff6060">&quot;input.in&quot;</font>, <font color="#ff6060">&quot;r&quot;</font>, <font color="#ff6060">stdin</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;freopen(<font color="#ff6060">&quot;output.out&quot;</font>, <font color="#ff6060">&quot;w&quot;</font>, <font color="#ff6060">stdout</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;number;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">while</font>&nbsp;(cin &gt;&gt; number &amp;&amp; number) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;string&gt; v(number, <font color="#ff6060">&quot;&quot;</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">for</font>&nbsp;(<font color="#00ff00">int</font>&nbsp;i = <font color="#ff6060">0</font>; i &lt; number; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin &gt;&gt; v[i];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#00ff00">int</font>&nbsp;count = checkString(v, number);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; count &lt;&lt; endl;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fclose(<font color="#ff6060">stdin</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fclose(<font color="#ff6060">stdout</font>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff00">return</font>&nbsp;<font color="#ff6060">0</font>;<br>
+}<br>
+</font></body>
+</html>
